@@ -1,6 +1,4 @@
-// Copyright 2026 Deno Land Inc. MIT license.
-
-const adjectives = [
+export const ADJECTIVES = [
   "able",
   "afraid",
   "bad",
@@ -103,7 +101,7 @@ const adjectives = [
   "wise",
 ];
 
-const nouns = [
+export const NOUNS = [
   "alligator",
   "alpaca",
   "amoeba",
@@ -205,10 +203,3 @@ const nouns = [
   "worm",
   "zebra",
 ];
-
-export function generateSlug(): string {
-  const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
-  const noun = nouns[Math.floor(Math.random() * nouns.length)];
-  const suffix = Math.floor(Math.random() * 89) + 10;
-  return `${adjective}-${noun}-${suffix}`;
-}
