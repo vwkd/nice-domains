@@ -28,6 +28,7 @@ program
   .command("generate")
   .description("Generate domain names")
   .requiredOption("-o --out <path>", "output directory")
+  .option("-n --nouns", "use nouns only")
   .action((options) => generate(options));
 
 program.parse();

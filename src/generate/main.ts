@@ -14,12 +14,21 @@ const NAMES_FILENAME = "names.txt";
  */
 export async function generate(options: Options): Promise<void> {
   const outputDirectory = options.out;
+  const nounsOnly = options.nouns;
 
   await Deno.mkdir(outputDirectory, { recursive: true });
 
-  const names = ADJECTIVES.flatMap((adjective) =>
-    NOUNS.map((noun) => `${adjective}${noun}`)
-  );
+  let names: string[];
+
+  if (nounsOnly) {
+    names = NOUNS.flatMap((
+      noun,
+    ) => NOUNS.filter((n) => n !== noun).map((n) => `${noun}${n}`));
+  } else {
+    names = ADJECTIVES.flatMap((adjective) =>
+      NOUNS.map((noun) => `${adjective}${noun}`)
+    );
+  }
 
   const filepath = join(outputDirectory, NAMES_FILENAME);
 
